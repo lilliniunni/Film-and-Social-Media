@@ -1,3 +1,7 @@
+
+## Introduction
+Film & Social Media is an information visualization that takes a “storytelling” approach in answering the question— what does the number of likes a movie receives on Facebook imply about the movie? The site then takes the viewer on a journey to discover the answer to this question through a series of data visualizations.
+
 ## How to run
 
 If you would like to run the visualization that I have created, please clone the repo and set up a simple local server. An example Python command for hosting a local server is shown below:
