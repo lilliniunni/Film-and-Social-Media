@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="main">
+		<!-- two column divs -->
+		<div class="overall-container">
+			<div class="vis-divide"style="margin-top: 30px" >
+				<div class="float-container">
+					<div class="scatter">
+						<label class="titles">Scatterplot for Exploration Purposes</label>
+						<div style="position: absolute; top: 150px;">
+							<div>
+								<label>Y Scale:</label>
+							</div>
+							<select class="custom-select small" id="yScaleSelect" onchange="onYScaleChanged()">
+								<option value="DirectorFacebookLikes">Director Facebook Likes</option>
+								<option value="Num Voted Users">Num Voted Users</option>
+								<option value="Num Critic For Reviews">Num Critic For Reviews</option>
+								<option value="Num User for Reviews">Num User for Reviews</option>
+								<option selected value="MovieFacebookLikes">Movie Facebook Likes</option>
+								<option value="Cast Total Facebook Likes">Cast Total Facebook Likes</option>
+								<option value="IMDB Score">IMDB Score</option>
+							</select>
+						</div>
+					</div>
+					<div style="margin-left: 170px;">
+						<svg width="450" height="300" id="svg1"">
+						</svg>
+					</div>
+					<div style="margin-left: 280px;">
+						<label>X Scale:</label>
+						<select class="custom-select small" id="xScaleSelect" onchange="onXScaleChanged()">
+							<option value="DirectorFacebookLikes">Director Facebook Likes</option>
+							<option value="Num Voted Users">Num Voted Users</option>
+							<option value="Num Critic For Reviews">Num Critic For Reviews</option>
+							<option alue="Num User for Reviews">Num User for Reviews</option>
+							<option value="MovieFacebookLikes">Movie Facebook Likes</option>
+							<option value="Cast Total Facebook Likes">Cast Total Facebook Likes</option>
+							<option selected value="IMDB Score">IMDB Score</option>
+						</select>
+					</div>
+				</div>
+				<div class="float-container" style= "margin-top: 40px">
+					<div class="float-child">
+						<div class="bar">
+							<label class="titles">Movie Released per Year</label>
+							<div style="position: absolute; top:700px; margin-left: 150px;">
+								<div>
+									<label class= "rotate">Total Movie Count</label>
+								</div>
+							</div>
+							<div style="margin-left: 210px; ">
+								<svg width="450" height="300" id="svg2">
+								</svg>
+							</div>
+							<div style="margin-left: 230px; margin-top: -20px;">
+								<label>Year Released</label>
+							</div>
+						</div>
+					</div>
+					<div class="float-child">
+						<div  style="position: absolute;  margin-left: 0px;">
+							<svg class="legend" height=150 width=50 style = "border: 0.5px outset; margin-left: 200px; margin-top:20px"></svg>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- start of the director charts -->
+		<div class="vis-divide">
+			<div>
+				<h1 class="ml3" style="margin-top: 10px; margin-left: 20px; padding-right: 100px;">What Makes a Film Popular on Social Media?</h1>
+			</div>
+			<div>
+				<p class="text-block" style="margin-top: 50px; margin-left: 20px;padding-right: 100px;">The film industry has flourished in the past decade. With the increasing usage of technologies and innovations of streaming services, movies have become more accessible. Today, we will be examining what affects the popularity of movies with regards to their social media attraction— more specifically, <b>what does the number of likes a movie receives on Facebook imply about the movie?</b></p>
+				<p class="text-block" style="margin-top: 20px; margin-left: 20px;padding-right: 100px;">The dataset used in this visualization contains a collection of features for the films produced in the 2010-2016 timeline. (Note: the data containing “NaN” and “Null” entries were emitted during the visualization construction.)</p>
+				<p class="text-block" style="margin-top: 20px; margin-bottom: 250px; margin-left: 20px;padding-right: 100px; padding-bottom: 0px;">To start, use the <b>scatterplot</b> and <b>bar chart</b> pair on the left to explore how the audience interacts with a film and the correlation among them through <b>brushing and linking</b>. While it may be difficult to observe a certain pattern, this visualization gives us an initial impression of some of the features that are contained in the dataset. </p>
+			</div>
+		</div>
+    </div>
+
+	<div>
+		<h1 class="ml" style="margin-left: 70px; margin-top: 20px; padding-left: 200px;padding-right: 200px;">The popularity of the actors have a significant impact on the popularity of the movies. </h1>
+	</div>
+	<div>
+		<p class="text-block" style="margin-top: 50px; margin-left: 70px;padding-right: 200px; padding-left: 200px;">In the following <b>packed bubbles view</b>, we explore the actors' impact the number of movie Facebook likes. By summing up the total number of likes of all movies done by each actor, we observe the appearance of some actors with distinctively larger bubbles than the rest of the actors.</p>
+		<p class="text-block" style="margin-top: 20px; margin-left: 70px;padding-right: 200px; padding-left: 200px;">On the right, a zoomed-in version of the left bubble chart is displayed, giving us a closer insight on who are the top 34 actors with the most amount of movie likes. Needless to say, the top actors are all well-known, thus, this explains how the popularity of the actors impacts the popularity of movies.</p>
+	</div>
+
+	<div class="float-container">
+		<div class="vis-divide" style="margin-top: 30px">
+			<label class="titles" style= "margin-left: 220px; margin-top: 80px;">Leading Actor Name vs. Movie Facebook Likes</label>
+			<svg id = "bubbles" width="960" height="660" font-family="sans-serif" font-size="10" text-anchor="middle" style = "margin-left: 20px; margin-top: 0px"></svg>
+		</div>
+		<div class="vis-divide" style="margin-top: 30px">
+			<label class="titles" style= "margin-left: 210px; margin-top: 80px;">Leading Actor Name vs. Movie Facebook Likes (Top 34 Actors)</label>
+			<svg id = "bubbles-zoomed" width="960" height="660" font-family="sans-serif" font-size="10" text-anchor="middle" style = "margin-left: 20px; margin-top: 0px"></svg>
+		</div>
+	</div>
+	<div>
+		<h1 class="ml" style="margin-left: 70px; margin-top: 20px; padding-left: 200px;padding-right: 200px;">This phenomenon of popular actors ressult in more social media interactions for the movies can also be reflected by the gross. </h1>
+	</div>
+	<div>
+		<p class="text-block" style="margin-top: 50px; margin-left: 70px;padding-right: 200px; padding-left: 200px;">In this second pair of the bubble chart, we further examine how much can an actor really impact the popularity of the movie by looking at the total gross of the movies lead by each actor, and we observe that familiar names, such as <b>Jennifer Lawrence</b> and <b>Chris Hemsworth</b> from the previous bubble charts stand out in this set of bubble charts as well. This observation once again proves that the more popular the actors are, the more likely people are willing to watch the movie. </p>
+	</div>
+	<div class="float-container">
+		<div class="vis-divide" style="margin-top: 30px">
+			<label class="titles" style= "margin-left: 220px; margin-top: 80px;">Leading Actor Name vs.Gross </label>
+			<svg id = "bubbles2" width="960" height="660" font-family="sans-serif" font-size="10" text-anchor="middle" style = "margin-left: 20px; margin-top: 0px"></svg>
+		</div>
+		<div class="vis-divide" style="margin-top: 30px">
+			<label class="titles" style= "margin-left: 210px; margin-top: 80px;">Leading Actor Name vs. Gross (Top 32 Actors)</label>
+			<svg id = "bubbles2-zoomed" width="960" height="660" font-family="sans-serif" font-size="10" text-anchor="middle" style = "margin-left: 20px; margin-top: 0px"></svg>
+		</div>
+	</div>
+	<div>
+		<h1 class="ml" style="margin-left: 70px; margin-top: 20px; padding-left: 200px;padding-right: 200px;">The popularity of actors also impacts the score of the film, and the more popular the actors are on social media, the higher the budget for the film itself. </h1>
+	</div>
+	<div>
+		<p class="text-block" style="margin-top: 50px; margin-left: 70px;padding-right: 200px; padding-left: 200px;">
+			In the following three bubble charts, we attempt to find a correlation between each movie actor and the total IMBD score received by the movies, the total number of users for reviews of the movies, and the budget for the total number of films acted by the actor. Due to a large number of entries in the dataset, a lower bound was set for each feature for us to more efficiently observe the resulting bubble views. 
+			</p>
+	</div>
+	<div class="float-container">
+		<div class="vis-divide-three">
+			<label class="titles" style= "margin-left: 150px; margin-top: 10px;">Leading Actor Name vs. IMDB Score</label>
+			<svg id = "bubbles3" width="460" height="460" font-family="sans-serif" font-size="10" text-anchor="middle" style = "margin-left: 60px; margin-top: 0px"></svg>
+		</div>
+		<div class="vis-divide-three">
+			<label class="titles" style= "margin-left: 130px; margin-top: 10px;">Leading Actor Name vs. Num User For Reviews</label>
+			<svg id = "bubbles4" width="460" height="460" font-family="sans-serif" font-size="10" text-anchor="middle" style = "margin-left: 60px; margin-top: 0px"></svg>
+		</div>
+		<div class="vis-divide-three">
+			<label class="titles" style= "margin-left: 150px; margin-top: 10px;">Leading Actor Name vs. Budget</label>
+			<svg id = "bubbles5" width="460" height="460" font-family="sans-serif" font-size="10" text-anchor="middle" style = "margin-left: 60px; margin-top: 0px"></svg>
+		</div>
+	</div>
+	<div>
+		<p class="text-block" style="margin-top: 50px; margin-left: 70px;padding-right: 200px; padding-left: 200px;">
+			In the first bubble chart, we observe how the sum IMBD score of all the films received by each actor correlates to the actors themselves. This bubble chart filtered out all the actors who have a total IMBD score of less than 40 to obtain a reasonable number of bubbles for observation purposes. Here, we do see some recurring names since the first set of bubble charts were presented, however, we also see some new names, such as Liam Nessen and Channing Tatum occupying a larger bubble this time. Despite the occurrence of other less popular actors, we still see the same general group of the most popular actors in this top IMBD score group. 
+		</p>
+		<p class="text-block" style="margin-top: 50px; margin-left: 70px;padding-right: 200px; padding-left: 200px;">
+			In the second bubble chart, we check to see if the more popular the actors, the more the reviews there would be for films acted by them. This reflects a very similar group of people from before, so we validate our correlation proposed. Note that this bubble chart filtered out all the actors who have a total review count of less than 2,000 to obtain a reasonable number of bubbles for observation purposes. 
+		</p>
+		<p class="text-block" style="margin-top: 50px; margin-left: 70px;padding-right: 200px; padding-left: 200px;">
+			In the last bubble chart, we look to find a pattern between the budget of the film and the actors. Without utilizing the popularity of each actor, the bubble chart still reflects almost the same group of the most popular actors. This shows the more popular the actors, the higher the budget for the films would be. Note that this bubble chart filtered out all the actors with less than $300,000,000 for the sum of the budget of all films done by them to obtain a reasonable number of bubbles for observation purposes. 
+		</p>
+		
+	</div>
+
+	<div class="float-container">
+		<div class="vis-divide"style="margin-top: 30px" >
+			<div>
+				<h1 class="ml" style="margin-left: 70px; margin-top: 20px; padding-right: 100px;padding-left: 100px;">The popularity of directors is somewhat positively correlated to the popularity of the films. </h1>
+			</div>
+			<p class="text-block" style="margin-top: 50px; margin-left: 70px;padding-right: 50px; padding-left: 100px;">
+				Take a look at the <b>scatterplot</b> on the right, a positive correlation can be established by only looking at 
+				the directors with Facebook likes of more than 10,000. Below such cutoff, we can rarely see a correlation between 
+				a director’s Facebook likes and movie Facebook likes. The dots highlighted red represents the director, Christopher Nolan,
+				 who has the most overall Facebook likes, and we can see that his films have performed significantly better than all the others 
+				 when received by social media. If you <b>hover</b> over each individual dot, you can see which director it represents.
+
+			</p>
+			<p class="text-block" style="margin-top: 50px; margin-left: 70px; padding-right: 50px; padding-left: 100px;">
+				Let’s take a look at the zoomed-in version of this lower half of the scatterplot, we see that there is neither a 
+				positive correlation nor a negative time correlation between the director’s Facebook likes and movie Facebook likes. 
+				Especially the regions highlighted in red, we see how even the directors receive lower than 50 likes, the performance 
+				of their films is not relative to themselves. 
+			</p>
+		</div>
+
+		<div class="vis-divide">
+			<div class= "float-container">
+				<div class="float-child">
+					<div id = "#second-vis">
+						<svg id="directors" width="700" height="400" style = "margin-left: 20px; margin-top: 100px"></svg>
+					</div>
+				</div>
+				<div class="float-child">
+					<div  style="position: absolute;  margin-left: 200px;">
+						<svg id="legend-director" height=50 width=120 style = "position: absolute;  border: 0.5px outset; margin-left: -50px; margin-top:270px"></svg>
+					</div>
+			    </div>
+		    </div>
+			<div class= "float-container">			
+				<div class="float-child">
+					<div id = "#second-vis-zoomed">
+						<svg id="directors-zoomed" width="700" height="400" style = "margin-left: 20px; margin-top: 100px"></svg>
+					</div>
+		    	</div>
+				<div class="float-child">
+					<div  style="position: absolute;  margin-left: 220px;">
+						<svg id="legend-director-zoomed" height=50 width=80 style = "position: absolute;  border: 0.5px outset; margin-left: -50px; margin-top:150px"></svg>
+					</div>
+			    </div>
+			</div>
+		</div>
+    </div>
+	<div class="float-container">
+		<div class="float-child">
+			<div class="vis-divide" style="margin-top: 30px">
+				<div  style="position: absolute;  margin-left: 30px;">
+					<svg id="ratings" width="700" height="400" style = "margin-left: 20px; margin-top: 100px"></svg>
+					<label style="margin-left: -400px;">Movie Facebook Likes</label>
+				</div>
+			</div>
+		</div>
+		<div class="float-child">
+			<div  style="position: absolute;  margin-left: 0px;">
+				<svg id="legend-bar" height=50 width=70 style = "position: absolute;  border: 0.5px outset; margin-left: -60px; margin-top:400px"></svg>
+			</div>
+		</div>
+		<div class="vis-divide" style="margin-top: 100px" >
+			<div>
+				<h1 class="ml" style="margin-left: 70px; margin-top: 20px; padding-right: 100px;padding-left: 100px;">Films rated R gain the highest popularity on social media. </h1>
+			</div>
+			<p class="text-block" style="margin-top: 50px; margin-left: 70px; padding-right: 200px; padding-left: 100px;">
+				The <b>bar chart</b> on the left explores how the ratings of the film influence the popularity of social media. 
+				We see that films rated R has the highest overall movie Facebook likes. 
+			</p>
+		</div>
+
+		</div>
+	</div>
+
+
+	<div class="float-container"style="margin-top: 250px">
+		<div class="vis-divide-three"style="margin-top: 30px" >
+			<div>
+				<h1 class="ml" style="margin-left: 70px; margin-top: 20px; padding-left: 50px;">Movies in English and made in the USA have the highest overall popularity on social media. 
+				</h1>
+			</div>
+			<p class="text-block" style="margin-top: 50px; margin-left: 70px; padding-left: 50px;">
+				Finally, the two <b>donut pie charts</b> on the right explore the movie Facebook likes based on the language and country of the film. 
+				We observe that English films and moves made in the USA have the overall highest number of likes on social media. 
+			</p>
+			<p class="text-block" style="margin-top: 50px; margin-left: 70px; padding-left: 50px;">
+         		<b>Toggle</b> the squares on the legend to <b>filter</b> out certain languages and countries and make observations based on the resulting pie charts. 
+			</p>
+
+			<p class="text-block" style="margin-top: 50px; margin-left: 70px; padding-left: 50px;">
+				<b>Note:</b> If you deselect English and USA, you can see a drastic change in the ratios among different languages and countries and make 
+				new observations based on the resulting pie chart. You can also <b>hover</b> to see what percetange each attribute obtains. <b>Try it out yourself!</b>
+		   </p>
+		</div>
+
+		<div class="vis-divide-three-pies">
+			<!-- <label class="titles"style = "margin-left: 160px; margin-top: 70px">Movie Facebook Likes by Language</label> -->
+			<div class= "float-container">
+					<svg id="pie1" style = "margin-left: 120px; margin-top: 20px"></svg>
+			</div>
+			<!-- <label class="titles" style = "margin-left: 160px; margin-top: 70px">ovie Facebook Likes by Country</label> -->
+			<div class= "float-container">
+					<svg id="pie2" style = "margin-left: 120px; margin-top: 20px"></svg>
+		    </div>
+		</div>
+	</div>
+
+
+
+
+
+
+</body>
+
+<script src="//d3js.org/d3.v4.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+<script src="https://d3js.org/d3-array.v2.min.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="./d3-tip.js"></script>
+<script src="./main.js"></script>
+<script src="./text-animation.js"></script>
+</html>
