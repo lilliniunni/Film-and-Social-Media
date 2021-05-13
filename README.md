@@ -10,7 +10,7 @@ Note that based on your current Python version, the `python3` command may need t
 
 Once you have the server set up, simply go to the address that you have created. In this case, you would want to type `localhost:8080` in your browser.
 
-From there, you can start clicking on each individual project and browse the `.html` files to view the visualizations.
+From there, you can browse the `.html` files to view the visualizations.
 
 ## Disclaimer
 
